@@ -1,0 +1,19 @@
+{
+    "trailingComma": "es5",
+    "printWidth": 200,
+    "bracketSameLine": false,
+    "semi": false,
+    "singleQuote": false,
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
+    "importOrder": [
+        "^(?![\\.])[./]",
+        "^@inertiajs/(.*)$",
+        "^vue(.*)$",
+        "^@\/(.*)$",
+        "^@utils(.*)$",
+        "^@primitives(.*)$",
+        "^@composables(.*)$",
+        "^@icons(.*)$",
+        "^.[./]"
+    ]
+}
