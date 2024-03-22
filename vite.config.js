@@ -1,5 +1,6 @@
 import vue from "@vitejs/plugin-vue"
 import laravel from "laravel-vite-plugin"
+import path from "path"
 import { defineConfig } from "vite"
 
 export default defineConfig({
@@ -17,4 +18,10 @@ export default defineConfig({
             },
         }),
     ],
+
+    resolve: {
+        alias: {
+            "@": path.resolve("resources"),
+        },
+    },
 })
