@@ -23,6 +23,13 @@ class InstallCommand extends Command
             'sudoer_password'   => $this->option('password'),
             'home_path'         => '/home/roost',
             'public_ip_address' => $this->option('ip'),
+
+            'web_server' => [
+                'driver' => 'caddy',
+                'path'   => '/etc/caddy',
+            ],
+
+            'meta' => [],
         ]);
 
         (new GenerateSshKeys)($server);
@@ -31,6 +38,7 @@ class InstallCommand extends Command
             'server_id' => $server->id,
             'name'      => $this->option('domain'),
             'type'      => Site\Type::Laravel,
+            'webroot'   => '/home/roost/'.$this->option('domain').'/public',
         ]);
     }
 }
