@@ -153,8 +153,15 @@ chown -R roost:roost "/home/roost/$DOMAIN_NAME"
 php artisan install --ip=$PUBLIC_IP_ADDRESS --domain=$DOMAIN_NAME --password=$PIGEONS_PASSWORD
 
 echo "$DOMAIN_NAME {
-    root * /home/roost/$DOMAIN_NAME
-    php_fastcgi unix//path/to/php-fpm.sock
+    header {
+        X-Xss-Protection \"1; mode=block\"
+        X-Content-Type-Options \"nosniff\"
+        X-Frame-Options \"SAMEORIGIN\"
+        -Server Caddy
+    }
+
+    root * /home/roost/$DOMAIN_NAME/public
+    php_fastcgi unix//run/php/php8.3-fpm.sock
     encode gzip
     file_server
 }" | sudo tee "/etc/caddy/sites-enabled/$DOMAIN_NAME.Caddyfile" > /dev/null
