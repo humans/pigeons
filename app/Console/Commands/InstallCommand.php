@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Actions\SetupCaddyWebServer;
 use App\Host\GenerateSshKeys;
 use App\Models\Server;
 use App\Models\Site;
@@ -28,12 +27,10 @@ class InstallCommand extends Command
 
         (new GenerateSshKeys)($server);
 
-        $site = Site::create([
+        Site::create([
             'server_id' => $server->id,
             'name'      => $this->option('domain'),
             'type'      => Site\Type::Laravel,
         ]);
-
-        (new SetupCaddyWebServer($site))->run($server);
     }
 }
