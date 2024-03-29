@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@define-mixin theme-light {
+    --color-canvas: #ffffff;
+    --color-stroke: #000000;
+}
+
+@define-mixin theme-dark {
+    --color-canvas: #000000;
+    --color-stroke: #ffffff;
+}
+
+@theme {
+    @mixin theme-light;
+
+    --font-family-sans: InterVariable, sans-serif;
+}
+
+@layer base {
+    :root {
+        font-feature-settings: 'liga' 1, 'calt' 1;
+    }
+
+    @media (prefers-color-scheme: light) {
+        .theme--device {
+            @mixin theme-light;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .theme--device {
+            @mixin theme-dark;
+        }
+    }
+
+    .theme--light {
+        @mixin theme-light;
+    }
+
+    .theme--dark {
+        @mixin theme-dark;
+    }
+}
