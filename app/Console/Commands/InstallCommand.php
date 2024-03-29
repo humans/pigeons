@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Actions\SetupCaddyWebServer;
+use App\Host\GenerateSshKeys;
 use App\Models\Server;
 use App\Models\Site;
 use Illuminate\Console\Command;
@@ -24,6 +25,8 @@ class InstallCommand extends Command
             'home_path'         => '/home/roost',
             'public_ip_address' => $this->option('ip'),
         ]);
+
+        (new GenerateSshKeys)($server);
 
         $site = Site::create([
             'server_id' => $server->id,
