@@ -103,6 +103,20 @@ apt install caddy
 sed -i 's/User=caddy/User=root/g; s/Group=caddy/Group=root/g' /usr/lib/systemd/system/caddy.service
 mkdir -p /etc/caddy/sites-enabled/
 
+echo "$DOMAIN_NAME {
+    header {
+        X-Xss-Protection \"1; mode=block\"
+        X-Content-Type-Options \"nosniff\"
+        X-Frame-Options \"SAMEORIGIN\"
+        -Server Caddy
+    }
+
+    root * /home/roost/$DOMAIN_NAME/public
+    php_fastcgi unix//run/php/php8.3-fpm.sock
+    encode gzip
+    file_server
+}" | sudo tee "/etc/caddy/sites-enabled/$DOMAIN_NAME.Caddyfile" > /dev/null
+
 # Set up the directory so caddy can support multiple files.
 echo "import sites-enabled/*" >> /etc/caddy/Caddyfile
 caddy fmt /etc/caddy/Caddyfile --overwrite
@@ -152,16 +166,3 @@ chown -R roost:roost "/home/roost/$DOMAIN_NAME"
 # Install the initial server and site credentials
 php artisan install --ip=$PUBLIC_IP_ADDRESS --domain=$DOMAIN_NAME --password=$PIGEONS_PASSWORD
 
-echo "$DOMAIN_NAME {
-    header {
-        X-Xss-Protection \"1; mode=block\"
-        X-Content-Type-Options \"nosniff\"
-        X-Frame-Options \"SAMEORIGIN\"
-        -Server Caddy
-    }
-
-    root * /home/roost/$DOMAIN_NAME/public
-    php_fastcgi unix//run/php/php8.3-fpm.sock
-    encode gzip
-    file_server
-}" | sudo tee "/etc/caddy/sites-enabled/$DOMAIN_NAME.Caddyfile" > /dev/null
