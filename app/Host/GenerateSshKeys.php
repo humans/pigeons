@@ -26,7 +26,7 @@ class GenerateSshKeys
                  * -N new passphrase
                  * <<< y This overwrites the existing file
                  */
-                'ssh-keygen -C "roost@humans.ph" -t rsa -b 4096 -N %s -f %s <<< y',
+                'ssh-keygen -C "roost@humans.ph" -t rsa -b 4096 -N %s -f %s',
                 escapeshellarg(''),
                 $path = $server->sshIdentityFilePath(),
             )
