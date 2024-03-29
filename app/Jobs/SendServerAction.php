@@ -42,7 +42,7 @@ class SendServerAction implements ShouldQueue
         );
 
         $this->action->update([
-            'result'      => $this->action->server->execute("sh {$script}"),
+            'result'      => $this->action->server->execute("bash {$script}"),
             'status'      => Action\Status::Successful,
             'finished_at' => now(),
         ]);
