@@ -138,7 +138,7 @@ chown -R roost:roost "/home/roost/$DOMAIN_NAME"
 su - roost -c "cd $PWD && composer install"
 
 # Configure the .env
-cp .env.production .env
+cp .env.example .env
 php artisan key:generate
 sed -i "s/^APP_URL=.*/APP_URL=https:\/\/$DOMAIN_NAME/" .env
 
