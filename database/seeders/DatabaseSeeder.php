@@ -9,12 +9,17 @@ use App\Models\Server;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        collect(File::files(storage_path('app/server-ssh-keys')))->each(function (\SplFileInfo $file) {
+            File::delete($file->getPathname());
+        });
+
         User::create([
             'name' => 'Jaggy Gauran',
             'email' => 'jaggy@humans.ph',
