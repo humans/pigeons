@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Field } from "@/primitives/field"
 import { Input } from "@/primitives/input"
+import { PageTitle } from "@/primitives/page-title"
 
 const register = useForm({
     method: "POST",
@@ -14,9 +15,9 @@ const register = useForm({
 })
 </script>
 
-<template>
+<template layout="auth">
     <div>
-        <h1>Create your owner account for Roost</h1>
+        <PageTitle>Create your owner account for Roost</PageTitle>
 
         <form :action="route('setup.store')" @submit.prevent="register.submit">
             <Field id="name" label="Your name" :error="register.errors.name">

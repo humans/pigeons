@@ -15,7 +15,7 @@ const login = useForm({
 })
 </script>
 
-<template>
+<template layout="auth">
     <div>
         <h1>Sign in to Roost</h1>
 
