@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
             File::delete($file->getPathname());
         });
 
-        User::create([
-            'name' => 'Jaggy Gauran',
-            'email' => 'jaggy@humans.ph',
-            'password' => 'password',
-        ]);
+        // User::create([
+        //     'name' => 'Jaggy Gauran',
+        //     'email' => 'jaggy@humans.ph',
+        //     'password' => 'password',
+        // ]);
 
         $server = Server::create([
             'name'              => 'asteroid-b612',

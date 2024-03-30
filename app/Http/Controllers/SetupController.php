@@ -11,15 +11,17 @@ class SetupController
 {
     public function create()
     {
-        return hybridly('setup.create', [
-            'links' => [
-                'store_path' => route('setup.store'),
-            ],
-        ]);
+        return hybridly('setup.create');
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email:dns', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+        ]);
+
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
