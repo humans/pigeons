@@ -81,6 +81,11 @@ apt install --yes --quiet --quiet $PHP_VERSION $PHP_VERSION-fpm $PHP_VERSION-mys
 curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+# Update the permissions of php-fpm to run as roost.
+sudo sed -i 's/^user = www-data/user = roost/g; s/^group = www-data/group = roost/g' /etc/php/8.3/fpm/pool.d/www.conf
+service php8.3-fpm restart
+
+
 
 #====================================================================
 # Caddy
