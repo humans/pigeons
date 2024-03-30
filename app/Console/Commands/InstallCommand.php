@@ -32,7 +32,12 @@ class InstallCommand extends Command
             'meta' => [],
         ]);
 
-        (new GenerateSshKeys)($server);
+        $keys = (new GenerateSshKeys)($server);
+
+        $server->update([
+            'public_key'  => $keys->public,
+            'private_key' => $keys->private,
+        ]);
 
         Site::create([
             'server_id' => $server->id,
