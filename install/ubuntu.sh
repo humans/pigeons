@@ -156,6 +156,8 @@ cd "/home/roost/$DOMAIN_NAME"
 chown -R roost:roost "/home/roost/$DOMAIN_NAME"
 su - roost -c "cd $PWD && composer install"
 
+# sed -i "s|http://roost.test|https://roost.pigeons.dev|g" /home/roost/roost.pigeons.dev/public/build/assets/*
+
 # Configure the .env
 cp .env.example .env
 php artisan key:generate
