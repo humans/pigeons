@@ -164,10 +164,11 @@ sed -i "s/^APP_URL=.*/APP_URL=https:\/\/$DOMAIN_NAME/" .env
 # Set up the SQLite database
 php artisan migrate --force
 
+# Install the initial server and site credentials
+php artisan install --ip=$PUBLIC_IP_ADDRESS --domain=$DOMAIN_NAME --password=$PIGEONS_PASSWORD
+
 # Fix the permissions
 chmod -R g+w "/home/roost/$DOMAIN_NAME"
 chown -R roost:roost "/home/roost/$DOMAIN_NAME"
 
-# Install the initial server and site credentials
-php artisan install --ip=$PUBLIC_IP_ADDRESS --domain=$DOMAIN_NAME --password=$PIGEONS_PASSWORD
-
+cat /home/roost/$DOMAIN_NAME/storage/app/ssh-server-keys/1.pub >> /home/roost/.ssh/authorized_keys
