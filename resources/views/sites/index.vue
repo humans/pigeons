@@ -10,7 +10,7 @@ defineProps<Props>()
 </script>
 
 <template layout>
-    <CardHeading :title="$t('app.servers.title')" :button="{ title: 'New server', route: route('servers.create') }" />
+    <CardHeading :title="$t('app.sites.title')" />
 
     <ContentContainer class="[ bg-canvas py-8 ]">
         <ul role="list" class="[ divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl ]">

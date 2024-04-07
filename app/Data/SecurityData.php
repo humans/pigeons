@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Data;
 
 use Spatie\LaravelData\Data;
-use App\Data\SecurityData;
+use App\Data\UserData;
 
-class SharedData extends Data
+class SecurityData extends Data
 {
     public function __construct(
-        public readonly SecurityData $security,
+        public readonly ?UserData $user,
     ) {
     }
 }

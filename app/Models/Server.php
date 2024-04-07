@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Process;
 
 /**
  * @property array<string, mixed> $meta
+ * @mixin IdeHelperServer
  */
 class Server extends Model
 {

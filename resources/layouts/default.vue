@@ -1,34 +1,33 @@
 <script setup lang="ts">
-const i18n = useI18n()
+import { Bars3Icon } from "@heroicons/vue/24/outline"
+import { ref } from "vue"
 
-const SidebarRoutes = [
-    { text: i18n.t("nouns.home"), url: route("home.index") },
-    { text: i18n.t("nouns.servers"), url: route("servers.index") },
-    { text: i18n.t("nouns.sites"), url: route("sites.index") },
-]
+const sidebarOpen = ref(false)
 </script>
 
 <template>
-    <div class="[ flex min-h-screen ]">
-        <aside class="[ w-[275px] hidden md:block h-screen p-4 text-sm border-r ]">
-            <div>
-                <div>
-                    <RouterLink :href="route('home.index')" class="[ text-lg font-extrabold tracking-tight ]"> roost </RouterLink>
-                </div>
+    <div class="[ bg-gray-100 h-screen ]">
+        <Sidebar :sidebar-open="sidebarOpen" />
+        <div class="lg:pl-72">
+            <div class="[ bg-white sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8 ]">
+                <div class="flex h-16 items-center gap-x-4 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
+                    <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = !sidebarOpen">
+                        <span class="sr-only">Open sidebar</span>
+                        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+                    </button>
 
-                <div class="[ mt-5 grid gap-2 ]">
-                    <div v-for="route in SidebarRoutes" :key="route.url">
-                        <RouterLink :href="route.url" class="[ inline-flex items-center gap-2 ]">
-                            <span class="[ h-6 w-6 rounded border ]"></span>
-                            <span>{{ route.text }}</span>
-                        </RouterLink>
-                    </div>
+                    <!-- Separator -->
+                    <div class="[ h-6 w-px bg-gray-200 lg:hidden ]" aria-hidden="true" />
+
+                    <MainHeader />
                 </div>
             </div>
-        </aside>
 
-        <main class="[ w-full min-h-screen p-4 ]">
-            <slot />
-        </main>
+            <main class="[ py-10 ]">
+                <div class="[ mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ]">
+                    <slot />
+                </div>
+            </main>
+        </div>
     </div>
 </template>

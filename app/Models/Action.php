@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property Server $server
  * @property Action\Status $status
+ * @mixin IdeHelperAction
  */
 class Action extends Model
 {

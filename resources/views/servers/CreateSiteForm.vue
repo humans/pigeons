@@ -2,6 +2,7 @@
 import { CsrfField } from "@/primitives/csrf-field"
 import { Field } from "@/primitives/field"
 import { Input } from "@/primitives/input"
+import { Button } from "~/resources/primitives/button"
 
 type Props = {
     server: App.Data.ServerData
@@ -22,7 +23,7 @@ const form = useForm({
 
 <template>
     <section>
-        <h2>Create a new site</h2>
+        <h2 class="[ font-bold ]">Create a new site</h2>
 
         <form :action="route('servers.sites.store', { server: server.id })" method="POST" @submit.prevent="form.submit">
             <CsrfField />
@@ -31,7 +32,9 @@ const form = useForm({
                 <Input type="text" name="name" v-model="form.fields.name" />
             </Field>
 
-            <button>Submit</button>
+            <div class="[ flex mt-4 ]">
+                <Button>Submit</Button>
+            </div>
         </form>
     </section>
 </template>
