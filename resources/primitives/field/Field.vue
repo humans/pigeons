@@ -17,9 +17,9 @@ provide("field/error", error)
 
 <template>
     <div class="field">
-        <label :for="id" class="field__label [ text-sm font-medium ]">{{ label }}</label>
+        <label :for="id" class="field__label [ block text-sm font-medium leading-6 text-gray-900 ]">{{ label }}</label>
 
-        <div class="field__control">
+        <div class="field__control [ mt-2 ]">
             <slot />
         </div>
 

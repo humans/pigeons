@@ -6,4 +6,6 @@ return [
     'home' => 'Home',
     'servers' => 'Servers',
     'sites' => 'Sites',
+    'profile' => 'Profile',
+    'sign-out' => 'Sign out',
 ];

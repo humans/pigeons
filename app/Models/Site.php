@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property Site\Type $type
+ * @mixin IdeHelperSite
  */
 class Site extends Model
 {

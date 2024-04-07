@@ -1,18 +1,16 @@
 <script lang="ts" setup>
-import { ContentContainer } from "@/primitives/content-container"
 import { CardHeading } from "@/primitives/card-heading"
+import { ContentContainer } from "@/primitives/content-container"
 
-defineProps<{
+type Props = {
     servers: App.Data.ServerData[]
-}>()
+}
 
-useHead({
-    title: "Home",
-})
+defineProps<Props>()
 </script>
 
 <template layout>
-    <CardHeading :title="$t('app.home.title')" />
+    <CardHeading :title="$t('app.sites.title')" />
 
     <ContentContainer class="[ bg-canvas py-8 ]">
         <ul role="list" class="[ divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl ]">
@@ -28,7 +26,13 @@ useHead({
                     </div>
                 </div>
                 <div class="[ flex flex-none items-center gap-x-4 ]">
-                    <RouterLink :href="route('servers.show', { server: server.id })" preload class="[ hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block ]"> {{ $t("actions.view") }} </RouterLink>
+                    <RouterLink
+                        :href="route('servers.show', { server: server.id })"
+                        preload
+                        class="[ hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block ]"
+                    >
+                        {{ $t("actions.view") }}
+                    </RouterLink>
                 </div>
             </li>
         </ul>
